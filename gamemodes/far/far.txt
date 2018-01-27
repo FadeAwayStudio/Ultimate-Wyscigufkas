@@ -1,0 +1,12 @@
+"far"
+{
+	"base"		"base"
+	"title"		"FadeAway's Ultimate Racing Wyscigufkas"
+	"maps"		"^far_"
+	"menusystem"	"1"
+	"author_name"   "barwa & blaster12354"
+	"workshopid"	"1282026582"
+
+
+	
+}
