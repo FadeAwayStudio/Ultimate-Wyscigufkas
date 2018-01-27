@@ -38,6 +38,7 @@ util.AddNetworkString("FinalCountdown")
 util.AddNetworkString("ColorChange")
 util.AddNetworkString("CreateMapFile")
 util.AddNetworkString("GrabCash")
+util.AddNetworkString("UnReadyRequest")
 
 function GM:PlayerSpawn(ply)
 ply:SetModel("models/player/Group01/male_02.mdl")
@@ -219,9 +220,20 @@ end)
 
 net.Receive("ReadyRequest", function(len, ply)
     if(GetGlobalInt("RoundState") == 0) then
+        ply:SetTeam(3)
     readyrequests = readyrequests + 1
         for k, v in pairs(player.GetAll()) do
-            v:PrintMessage(3, ply:GetName().." voted to start.")
+            v:PrintMessage(3, ply:GetName().." is ready.")
+        end
+    end
+end)
+
+net.Receive("UnReadyRequest", function(len, ply)
+    if(GetGlobalInt("RoundState") == 0 && ply:Team() == 3) then
+        ply:SetTeam(2)
+    readyrequests = readyrequests - 1
+        for k, v in pairs(player.GetAll()) do
+            v:PrintMessage(3, ply:GetName().." is not ready.")
         end
     end
 end)
