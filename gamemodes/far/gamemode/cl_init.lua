@@ -69,7 +69,7 @@ local lap = 0
 ---------------------
 local selectedcar = "Citroen C1"
 local isReady = false;
-local selectedcarent = "4"
+local selectedcarent = "0"
 
 function Menu()
 --Main Frame
@@ -294,6 +294,16 @@ else
 LocalPlayer():PrintMessage(3, "You already voted.")
 end
 end)
+
+concommand.Add("far_unready", function()
+	if(isReady) then
+	isReady = false;
+	net.Start("UnReadyRequest")
+	net.SendToServer()
+	else
+	LocalPlayer():PrintMessage(3, "You need to be ready first.")
+	end
+	end)
 
 net.Receive("SendSpawnRequest", function()
 	surface.PlaySound("sfx/racestart.wav")

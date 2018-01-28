@@ -11,6 +11,7 @@ include( "carset.lua" )
 team.SetUp( 0, "Racers", Color(37, 227, 252) )
 team.SetUp( 1, "Spectators", Color(150,150,150) )
 team.SetUp( 2, "Lobby", Color(102, 255, 99) )
+team.SetUp( 3, "Ready", Color(0, 255, 0) )
 
 SetGlobalInt("RoundState", 0)
 SetGlobalInt("RoundCountdown", 11)

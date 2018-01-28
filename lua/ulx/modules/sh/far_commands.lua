@@ -37,10 +37,11 @@ end
 local ready = ulx.command( cat, "ulx ready", ulx.ready, {"!ready","!reedie"}, true )
 ready:defaultAccess( ULib.ACCESS_ALL )
 ready:help( "Vote for match start" )
---------------------------------------------------------------------------------
-function ulx.kill( calling_ply )
-    MakeSpectator(calling_ply)
+--------------------------------------------------------------------------------------------
+function ulx.unready( calling_ply )
+    calling_ply:ConCommand("far_unready")
 end
-local kill = ulx.command( cat, "ulx kill", ulx.kill, "!kill", true )
-kill:defaultAccess( ULib.ACCESS_ALL )
-kill:help( "Kill" )
+local unready = ulx.command( cat, "ulx unready", ulx.unready, "!unready", true )
+unready:defaultAccess( ULib.ACCESS_ALL )
+unready:help( "Change to not ready." )
+--------------------------------------------------------------------------------
