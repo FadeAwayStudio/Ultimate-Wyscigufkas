@@ -20,12 +20,19 @@ function ENT:Initialize()
 	end
 end
 
-local destroyed = false
+
+function RandPowerup()
+	local powerup = "far_oneshot"
+	local powerups = {"far_oneshot", "weapon_crowbar"}
+	powerup = powerups[math.random(0, 1)]
+	print(powerup)
+	return powerup
+end
 
 function ENT:StartTouch( car )
 	driver = car:GetDriver()
-	driver:Give("far_oneshot", true)
-	destroyed = true
+	driver:Give(RandPowerup(), true)
+
 	driver:PrintMessage(3, "boom")
 	self:Remove()
 end
