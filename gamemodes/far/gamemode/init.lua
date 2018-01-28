@@ -59,7 +59,11 @@ end
 
 --Main Game Mechanics
 local mply = FindMetaTable( "Player" )
+function GM:PlayerDeath( vic )
 
+    MakeSpectator( vic )
+
+end
 function GM:Think()
     SetGlobalBool("FreeCars", GetConVar("far_freecars"):GetBool())
 for k, v in pairs(player.GetAll()) do
@@ -171,12 +175,12 @@ end
 function MakeSpectator(ply)
 local plycar = ply:GetVehicle()
 ply:ExitVehicle()
+plycar:Remove()
 ply:KillSilent()
-ply:Spectate(OBS_MODE_ROAMING)
+ply:Spawn()
 ply:SetTeam(1)
 ply:SetFrags(-1)
 SetGlobalInt("PlayerAlive", AlivePlayers())
-plycar:Remove()
 for k,v in pairs(player.GetAll()) do
     v:PrintMessage(3, ply:GetName().." is out of the race!")
 end
@@ -272,5 +276,3 @@ net.Receive("ColorChange", function(len, ply)
 scolor = net.ReadVector()
 ply:SetNWVector("CarColor", scolor)
 end)
-
-hook.Add( 'PlayerDeathThink', 'NoRespawn', function(ply) return false end )

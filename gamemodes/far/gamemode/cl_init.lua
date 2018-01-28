@@ -69,7 +69,7 @@ local lap = 0
 ---------------------
 local selectedcar = "Citroen C1"
 local isReady = false;
-local selectedcarent = "4"
+local selectedcarent = "0"
 
 function Menu()
 --Main Frame
